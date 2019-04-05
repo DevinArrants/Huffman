@@ -35,9 +35,13 @@ void BitIO::output_bit(bool bit){
 //returns true if next bit is of value 1
 //returns false if next bit is of value 0
 bool BitIO::input_bit(){
-    assert(is_);        //WRONG
-    bool result;
-    if(index_ == 0)      (*is_).get(buffer_);
-    else                index_ += 1;
-    result = buffer_ >> 1 & 1;
+    assert(is_);
+    bool result = buffer_ >=128;
+    buffer_<<1;
+    index_++
+    if(index_ == 8){      
+    (*is_).get(buffer_);
+    index_=0;
+  }
+    return result;
 }
