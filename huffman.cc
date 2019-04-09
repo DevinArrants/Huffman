@@ -1,5 +1,6 @@
 #include "huffman.hh"
 #include "hforest.hh"
+#include <iostream>
 #include <assert.h>
 
 HTree::tree_ptr_t Huffman::create_huff(){
@@ -20,7 +21,6 @@ HTree::tree_ptr_t Huffman::create_huff(){
         std::shared_ptr<HTree> key(new HTree(-1, left->get_value() + right->get_value(), left, right));
         forest.add_tree(key);
     }
-    assert(forest.size() == 1);
     return forest.pop_tree();
 }
 
@@ -53,9 +53,9 @@ int Huffman::decode(bool bit){
     else             huff_ = huff_ -> get_child(HTree::Direction::LEFT);                
     //Eventually, the current node will be a leaf, at which point a real character c will be returned, 
     //and you can reset the Huffman tree to nullptr to remember that next bit starts a new sequence. 
-    //Additionally, increment the frequency table for c.
     int key = huff_->get_key();
     if(key >= 0) {
+	//increment frequency table for c 
         freq_[key]++;
         huff_ = nullptr;
     }     
