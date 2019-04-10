@@ -25,10 +25,10 @@ int main (int argc, char **argv)
 	    std::cerr <<"need filename to decode";
 	    return -1;
     }
-    std::ofstream outputFile(std::string(argv[1]) + ".plaintext");
-    std::ifstream inputFile(std::string(argv[1]));
+    std::ofstream outputFile(std::string(argv[1]) + ".plaintext", std::ios::out);
+    std::ifstream inputFile(std::string(argv[1]), std::ios::in);
     if(!inputFile.is_open()){
-	    std::cerr <"Cannot open input file.\n";
+	    std::cerr <<"Cannot open input file.\n";
 	    return -2;
     }
 
