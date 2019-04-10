@@ -9,14 +9,15 @@ int main(int argc, char** argv){
 		std::cerr<<"Need input filename to encode\n";
 		return -1;
 	}
+	
 	std::ifstream inp(argv[1]);
-
 	if(!inp.is_open()){ //Make sure file can be opened
 		std::cerr<<"Can't open input file "<<argv[1]<<"\n";
 		return -2; 
 	}
 
-	std::ofstream out(*argv[1]+".comp");
+	std::ofstream out(std::string(argv[1])+".comp");
+	
 	char symbol;
 	Huffman huff;
 	BitIO bitio(&out, nullptr);
@@ -27,6 +28,7 @@ int main(int argc, char** argv){
 			bitio.output_bit(bit); //Sends that code to file.comp
 		}
 	}
+	return 0;
 }
 
 
