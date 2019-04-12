@@ -27,6 +27,8 @@ An basic understanding of using terminal
 
 Download the files, use make file to compile, run ./encoder (filename) to compress and ./decoder (filename).comp to decompress
 # Design Choices
+Due to an incredbily thorough description of the Huffman class, all design choices in huffman followed the description.
+Encoder and decoder similarly followed the thorough code example for the most part. In decoder we removed the outer loop from the example and instead of breaking when we reach the EOF, we simply end the loop when EOF is hit. Encoder was a derevation of decoder.
 ## BitIO
 The constructor for this class takes exactly one non-null pointer to a stream: either for output or for input. A BitIO object is meant to be used either for reading from a file or writing to one, not both at once. Therefore, one of the two stream pointers passed to the constructor must be nullptr. It should save this pointer for subsequent I/O. The destructor cleans up any pending file operations.
 
