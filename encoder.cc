@@ -18,7 +18,6 @@ int main(int argc, char const *argv[])
   }
    std::fstream out(std::string(argv[1])+".comp",std::ios::out);
  
-  // out.open(std::string(argv[1])+".comp",std::ios::out); 
    char symbol;
    Huffman huff;
    BitIO bitio(&out, nullptr);
@@ -32,7 +31,6 @@ int main(int argc, char const *argv[])
 
   for(auto bit: huff.encode(Huffman::HEOF)){
 	  bitio.output_bit(bit);
-  }
-   //out.close(); 
+  } 
    return 0; 
 } 
