@@ -11,12 +11,14 @@ int main(int argc, char const *argv[])
   
   std::ifstream inp(argv[1]);
 
+
   if(!inp.is_open()){ //Make sure file can be opened
     std::cerr<<"Can't open input file "<<argv[1]<<"\n";
     return -2; 
   }
-   std::fstream out; 
-   out.open(std::string(argv[1])+".comp",std::ios::out); 
+   std::fstream out(std::string(argv[1])+".comp",std::ios::out);
+ 
+  // out.open(std::string(argv[1])+".comp",std::ios::out); 
    char symbol;
    Huffman huff;
    BitIO bitio(&out, nullptr);
@@ -28,9 +30,9 @@ int main(int argc, char const *argv[])
     }
   }
 
-  for(auto bits: huff.encode(Huffman::HEOF)){
-	  bitio.output_bit(bits);
+  for(auto bit: huff.encode(Huffman::HEOF)){
+	  bitio.output_bit(bit);
   }
-   out.close(); 
+   //out.close(); 
    return 0; 
 } 
